@@ -1,41 +1,43 @@
 const readlineSync = require("readline-sync");
-const letterCombinations = (number) => {
-  if (/[01]/.test(number)) {
-    console.error("Esse numero nao e valido");
+class LetterCombinations {
+  constructor(number) {
+    this.digit = String(number);
+    this.combinations = [];
+    this.mapping = {
+      1: " ",
+      2: "abc",
+      3: "def",
+      4: "ghi",
+      5: "jkl",
+      6: "mno",
+      7: "pqrs",
+      8: "tuv",
+      9: "wxyz",
+    };
   }
-  const digit = String(number);
-  const mapping = {
-    1: " ",
-    2: "abc",
-    3: "def",
-    4: "ghi",
-    5: "jkl",
-    6: "mno",
-    7: "pqrs",
-    8: "tuv",
-    9: "wxyz",
-  };
 
-  const combinations = [];
-
-  const createCombinations = (digit, results) => {
+  createCombinations(digit, results) {
     if (digit.length === 0) {
-      return combinations.push(results);
+      return this.combinations.push(results);
     }
 
-    for (let i = 0; i < mapping[digit[0]].length; i++) {
-      createCombinations(digit.slice(1), results + mapping[digit[0]][i]);
+    for (let i = 0; i < this.mapping[digit[0]].length; i++) {
+      this.createCombinations(
+        digit.slice(1),
+        results + this.mapping[digit[0]][i]
+      );
     }
-  };
+  }
+  returnCombinations() {
+    this.createCombinations(this.digit, "");
+    return this.combinations;
+  }
+}
 
-  createCombinations(digit, "");
-  return combinations;
-};
-
-const TestletterCombinations = letterCombinations(
-  Number(readlineSync.question("enter a number \n"))
+const TestLetterCombinations = new LetterCombinations(
+  readlineSync.question("enter a number \n")
 );
-console.log(TestletterCombinations);
-// ***?*** //
+console.log(TestLetterCombinations.returnCombinations());
+/* +- */
 // Input: digits = "23"
 // Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
