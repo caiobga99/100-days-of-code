@@ -7,5 +7,7 @@ class NimGame {
     return this.num % 4 !== 0;
   }
 }
-const TestNimGame = new NimGame(readlineSync.question("enter a number \n"));
+const TestNimGame = new NimGame(
+  Number(readlineSync.question("enter a number \n"))
+);
 console.log(TestNimGame.canWinNim());
