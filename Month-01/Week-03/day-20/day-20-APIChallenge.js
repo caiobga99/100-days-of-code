@@ -17,15 +17,17 @@ buttonSearch.addEventListener("click", async () => {
       ) {
         res.innerHTML = `${data.name}-${data.sys.country}<br>Latitude: ${
           data.coord.lat
-        }<br>Longitude: ${data.coord.lon}<br><br>Tempo: ${
-          parseInt(data.main.temp) + "ºC"
-        }<br>${data.weather[0].description}`;
+        }<br>Longitude: ${data.coord.lon}<br><br>Time: ${
+          parseFloat(data.main.temp) + "ºC"
+        } or ${(parseFloat(data.main.temp) * 9) / 5 + 32 + "ºF"}<br>${
+          data.weather[0].description
+        }`;
       } else {
         res.innerHTML = "this city does not belong to the valid countries!";
       }
-      console.log(data);
     })
     .catch((err) => {
       res.innerHTML = "this city does not exist!";
+      console.log(err);
     });
 });
