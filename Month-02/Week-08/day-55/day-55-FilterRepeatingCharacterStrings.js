@@ -29,6 +29,10 @@ const filterRepeatingCharacterStrings = new FilterRepeatingCharacterStrings([
 ]);
 console.log(filterRepeatingCharacterStrings.identicalFilter());
 
+
+
+
+
 // identicalFilter(["aaaaaa", "bc", "d", "eeee", "xyz"])
 // ➞ ["aaaaaa", "d", "eeee"]
 
